@@ -1,3 +1,9 @@
+### imgui
+include_directories(./external/imgui)
+include_directories(./external/imgui/examples)
+
+add_library(imgui ./external/imgui/imgui.cpp ./external/imgui/imgui_demo.cpp ./external/imgui/imgui_draw.cpp ./external/imgui/imgui_widgets.cpp ./external/imgui/examples/imgui_impl_glfw.cpp ./external/imgui/examples/imgui_impl_opengl3.cpp)
+
 add_library( opengl_kernel
   Config.cpp
   ApplicationFactory.cpp
@@ -73,6 +79,9 @@ add_executable(opengl
 target_link_libraries( opengl
   opengl_kernel )
 
+## imgui2
+target_link_libraries(opengl imgui)
+
 #
 #  Now all the plugins...
 #
@@ -83,3 +92,4 @@ add_subdirectory( plugins/FreeTypeTextRenderer )
 add_subdirectory( plugins/SOILTextureProvider )
 add_subdirectory( plugins/OIIOTextureProvider )
 add_subdirectory( plugins/TextFileRenderer )
+
